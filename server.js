@@ -7,13 +7,19 @@
 
 var usb = require("usb");
 var express = require('express');
+var path = require('path');
+var T = require('timbre');
 const app = express();
 
-
+// send some data in response to HTTP GET request
 app.get('/', function (req, res) {
   res.send('Hello World!');
 });
 
+// define public directory
+app.use(express.static(path.join(__dirname, 'public')));
+
+// set up app listening
 app.listen(3000, function () {
   console.log('Example app listening on port 3000!');
 });
@@ -65,6 +71,7 @@ function readData(device, deviceINTF){
 	epIN.startPoll();
 
     // when this endpoint receives data, do stuff
+    // contains joystick data - to be moved into external file
     epIN.on('data', function (data) {
     	// info for Nyko joystick:
     	// data[0] = L joystick X (0-255, L-R)
@@ -137,3 +144,4 @@ function readData(device, deviceINTF){
 }
 
 // make audio go
+T("sin", {freq:440}).play();
