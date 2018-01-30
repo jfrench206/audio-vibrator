@@ -1,0 +1,14 @@
+{
+  "name": "audio-vibrator",
+  "version": "0.0.1",
+  "description": "Vibrate physical objects with sound.",
+  "main": "server.js",
+  "author": "Jesse French",
+  "dependencies": {
+    "express": "^4.16.2",
+    "jquery": "^3.2.1",
+    "subcollider": "latest",
+    "timbre": "^14.11.25",
+    "usb": "latest"
+  }
+}
