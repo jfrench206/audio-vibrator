@@ -1,5 +1,7 @@
 // TODO:
 // add audio functionality
+// add a constant to set number of audio oscillators
+// delve into T object - is it better to instantiate one for each button, or can I use one object and have multiple audio threads on it?
 // make a UI
 // add auto-reconnect on LIBUSB_TRANSFER_ERROR
 // make some kind of automap mode that takes arbitrary input and makes it usable
@@ -10,6 +12,8 @@ var express = require('express');
 var path = require('path');
 var T = require('timbre');
 const app = express();
+var joystick = {};
+var debounce = {};
 
 // send some data in response to HTTP GET request
 app.get('/', function (req, res) {
@@ -99,9 +103,9 @@ function readData(device, deviceINTF){
             rclick : 8
         }
 
-        // create joystick object -
+        // populate joystick object -
         // uses bitmasking to determine which buttons are pressed, for method see: https://blog.rinatussenov.com/juggling-bits-in-javascript-bitmasks-128ad5f31bed
-        const joystick = {
+        joystick = {
             leftX : data[0],
             leftY : data[1],
             lclick:Boolean(data[5] & mask.lclick),
@@ -132,7 +136,9 @@ function readData(device, deviceINTF){
         // console.log("data keys: " + Object.getOwnPropertyNames(data));
 
         // print out all data received
-        console.log("joystick: " + Object.values(data));
+        // console.log("joystick: " + Object.values(data));
+
+        runAudio();
 
 
     });
@@ -144,4 +150,15 @@ function readData(device, deviceINTF){
 }
 
 // make audio go
-T("sin", {freq:440}).play();
+function runAudio(){
+    if((joystick.buttons.square) && (!debounce.square)){
+        debounce.square = "true";
+        T("sin", {freq:440}).play();
+        console.log("starting");
+    }
+    else if ((joystick.buttons.square) && (debounce.square)){
+        debounce.square = "false";
+        T("sin", {freq:440}).stop();
+        console.log("stopping");
+    }
+}
