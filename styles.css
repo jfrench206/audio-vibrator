@@ -48,12 +48,14 @@ h1, h3 {
 
 header{
 	font-family: 'Roboto', sans-serif;
+	padding-top: 10px;
 }
 
 footer{
 	font-size: .9em;
 	color: rgb(144, 150, 145);
 	font-family: 'Roboto', sans-serif;
+	padding-bottom: 10px;
 }
 
 div > span {
