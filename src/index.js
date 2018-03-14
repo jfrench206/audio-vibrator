@@ -56,12 +56,26 @@ function pitchDown(value){
 	osc.freq.value--;
 }
 
+function microPitchUp(value){
+	console.log("micro increasing pitch");
+	osc.freq.value = osc.freq.value + 0.2;
+}
+
+function microPitchDown(value){
+	console.log("micro decreasing pitch");
+	osc.freq.value = osc.freq.value - 0.2;
+}
+
 function keyDown(e){
 	// console.log(keys);
 	if (e.key === 'ArrowDown'){
 		pitchDown();
+	} else if (e.key === 'ArrowLeft'){
+		microPitchDown();
 	} else if (e.key === 'ArrowUp'){
 		pitchUp();
+	} else if (e.key === 'ArrowRight'){
+		microPitchUp();
 	} else if (keys.indexOf(e.key) === -1){ // if key hasn't been pressed, add it to keys array
 		keys.push(e.key);
 		playSound(e.key);
