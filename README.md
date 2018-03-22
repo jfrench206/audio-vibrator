@@ -23,8 +23,8 @@ Run dev server:
 
 `npm run start`
 
-That'll get you running - point your browser at localhost:3000 and the app should be there.
+That'll get you running - point your browser at localhost:3000 and the app should be there. Edit the files in /src and /assets and watch your app hot reload as you save :D WebPack is cool.
 
-To build production artifact:
+To build production artifact (this creates the /docs folder, like the one I'm using to serve the page from GitHub Pages):
 
 `npm run build`
