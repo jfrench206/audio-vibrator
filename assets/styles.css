@@ -1,0 +1,65 @@
+html, body{
+	height: 98.6%;
+}
+
+.flex-container {
+	--corner-easing:5px;
+	display:flex;
+	flex-direction:column;
+	justify-content: center;
+	align-items: center;
+	height: 100%;
+	min-height: 200px;
+	background-color: rgba(206, 229, 209, 0.8);
+	border-radius:var(--corner-easing);
+	font-family: 'Roboto Condensed', sans-serif;
+	color: rgba(0,0,0,.8);
+}
+
+.audio-wrapper{
+	display:flex;
+	flex-flow:row wrap;
+	justify-content: center;
+	align-items: flex-end;
+	border-radius:var(--corner-easing);
+	max-width: 700px;
+}
+
+
+.audio-module {
+	padding: 30px;
+	margin: 10px;
+	font-size: 1.5em;
+	background-color:rgba(13, 193, 40,.8);
+	border-radius:var(--corner-easing);
+}
+
+input[type=checkbox] {
+	position: relative;
+	top: -24px;
+	left: 25px;
+    width:20px;
+    height:20px;
+}
+
+h1, h3 {
+	margin: 5px;
+}
+
+header{
+	font-family: 'Roboto', sans-serif;
+	padding-top: 10px;
+}
+
+footer{
+	font-size: .9em;
+	color: rgb(144, 150, 145);
+	font-family: 'Roboto', sans-serif;
+	padding-bottom: 10px;
+}
+
+div > span {
+	position: relative;
+	top: -26px;
+	left: -19px;
+}
