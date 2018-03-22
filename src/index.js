@@ -16,8 +16,8 @@ var osc = T("sin", {freq:440, mul:0.5});
 window.onload=function(){
 	// listen for events
 	var parentElem = document.querySelector("div.audio-wrapper");
-	parentElem.addEventListener("pointerdown", pointDown, false);
-	parentElem.addEventListener("pointerup", pointUp, false);
+	// parentElem.addEventListener("pointerdown", pointDown, false);
+	// parentElem.addEventListener("pointerup", pointUp, false);
 	document.addEventListener("keydown", keyDown, false);
 	document.addEventListener("keyup", keyUp, false);
 }
@@ -67,27 +67,39 @@ function microPitchDown(value){
 }
 
 function keyDown(e){
-	// console.log(keys);
-	if (e.key === 'ArrowDown'){
-		pitchDown();
-	} else if (e.key === 'ArrowLeft'){
-		microPitchDown();
-	} else if (e.key === 'ArrowUp'){
-		pitchUp();
-	} else if (e.key === 'ArrowRight'){
-		microPitchUp();
-	} else if (keys.indexOf(e.key) === -1){ // if key hasn't been pressed, add it to keys array
-		keys.push(e.key);
-		playSound(e.key);
+	var k = e.key || e.keyCode; //cross-browser compatibility
+
+	//regex to match modifiers
+	var re = /\bControl\b|\bShift\b|\bCapsLock\b|\bAlt\b|\bTab\b|\bEscape\b/; 
+
+	if (!re.test(k)){ // if key pressed is not a modifier
+		console.log(k);
+		
+		// if key hasn't been pressed, add it to keys array
+		if (keys.indexOf(k) === -1){ 
+			console.log("adding key to array and playing sound")
+			keys.push(k);
+			playSound(k);
+		} else if (k === 'ArrowDown'){
+			pitchDown();
+		} else if (k === 'ArrowLeft'){
+			microPitchDown();
+		} else if (k === 'ArrowUp'){
+			pitchUp();
+		} else if (k === 'ArrowRight'){
+			microPitchUp();
+		} 
 	}
 }
 
 function keyUp(e){
-	var keyLoc = keys.indexOf(e.key);
+	var k = e.key || e.keyCode; //cross-browser compatibility
+
+	var keyLoc = keys.indexOf(k);
 	// if key is in keys array, and releases, remove it from keys array
 	if (keyLoc !== -1) {
 		keys.splice(keyLoc, 1);
-		stopSound(e.key);
+		stopSound(k);
 	}
 	// console.log(keys);
 }

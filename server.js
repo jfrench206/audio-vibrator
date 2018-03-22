@@ -1,20 +1,30 @@
-const express = require('express')
 const webpack = require('webpack')
-const webpackDevMiddleware = require('webpack-dev-middleware')
+const path = require('path')
+const CleanWebpackPlugin = require('clean-webpack-plugin')
+const CopyWebpackPlugin = require('copy-webpack-plugin')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 
-const app = express()
-const config = require('./webpack.config.js')
-const compiler = webpack(config)
+const PUBLIC_PATH_PREFIX = './'
 
-app.use('/assets', express.static('assets'))
-
-// Tell express to use the webpack-dev-middleware and use the webpack.config.js
-// configuration file as a base.
-app.use(webpackDevMiddleware(compiler, {
-  publicPath: config.output.publicPath
-}))
-
-// Serve the files on port 3000.
-app.listen(3000, function () {
-  console.log('Example app listening on port 3000!\n')
-})
+module.exports = {
+  entry: {
+    app: './src/index.js'
+  },
+  devtool: 'inline-source-map',
+  plugins: [
+    new CleanWebpackPlugin(['docs']),
+    new CopyWebpackPlugin([
+      { from: 'assets', to: 'assets' }
+    ]),
+    new HtmlWebpackPlugin({
+      title: 'Output Management',
+      template: 'src/index.html',
+      pathPrefix: PUBLIC_PATH_PREFIX
+    })
+  ],
+  output: {
+    filename: 'bundle.js',
+    path: path.resolve(__dirname, 'docs'),
+    publicPath: PUBLIC_PATH_PREFIX
+  }
+}
