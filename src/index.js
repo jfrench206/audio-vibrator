@@ -69,8 +69,8 @@ function microPitchDown(value){
 function keyDown(e){
 	var k = e.key || e.keyCode; //cross-browser compatibility
 
-	//regex to match modifiers
-	var re = /\bControl\b|\bShift\b|\bCapsLock\b|\bAlt\b|\bTab\b|\bEscape\b/; 
+	//regex to match modifiers & arrow keys
+	var re = /\bControl\b|\bShift\b|\bCapsLock\b|\bAlt\b|\bTab\b|\bEscape\b|\ArrowDown\b|\ArrowLeft\b|\ArrowUp\b|\ArrowRight\b/; 
 
 	if (!re.test(k)){ // if key pressed is not a modifier
 		console.log(k);
