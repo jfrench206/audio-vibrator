@@ -9,9 +9,9 @@ const compiler = webpack(config)
 app.use('/assets', express.static('assets'))
 
 // Tell express to use the webpack-dev-middleware and use the webpack.config.js
-// configuration file as a base.
+// configuration file as a base - except explicitly define publicPath so dev environment works right
 app.use(webpackDevMiddleware(compiler, {
-  publicPath: config.output.publicPath
+  publicPath: '/'
 }))
 
 // Serve the files on port 3000.
