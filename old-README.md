@@ -1,9 +1,30 @@
 # audio-vibrator
+
 This app enables you to find the resonant frequencies of nearby objects using a bank of easily tunable audio oscillators. Once tuned, you can use the oscillators to play the room like a drumset (requires a subwoofer). It's fun, loud and guaranteed to piss off your neighbors! So do it while they're not home ;)
 
 [Click here to use the app.](https://jfrench206.github.io/audio-vibrator/)
 
 ## Current status:
-Front-end is mocked up - needs audio logic implemented & UI hooked up with JS
+3/22 - Front end is mocked up, working on adding multiple oscillators
 
-All the action is currently on the [gh-pages branch.](../../tree/gh-pages)
+## Dev guide
+
+The project uses the [Timbre.js](https://mohayonao.github.io/timbre.js/) library for audio generation, and WebPack to help neaten the dev / build environments. Thanks to [fat0wl](https://github.com/fat0wl/) for his help with the transition to WebPack!
+
+First:
+
+`git clone https://github.com/jfrench206/audio-vibrator`
+
+Install dependencies:
+
+`npm install`
+
+Run dev server:
+
+`npm run start`
+
+That'll get you running - point your browser at localhost:3000 and the app should be there.
+
+To build production artifact:
+
+`npm run build`
