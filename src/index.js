@@ -70,13 +70,14 @@ function keyDown(e){
 	var k = e.key || e.keyCode; //cross-browser compatibility
 
 	//regex to match modifiers & arrow keys
-	var re = /\bControl\b|\bShift\b|\bCapsLock\b|\bAlt\b|\bTab\b|\bEscape\b|\ArrowDown\b|\ArrowLeft\b|\ArrowUp\b|\ArrowRight\b/; 
+	var mods = /\bControl\b|\bShift\b|\bCapsLock\b|\bAlt\b|\bTab\b|\bEscape\b/; 
+	var arrows = /\bArrowDown\b|\bArrowLeft\b|\bArrowUp\b|\bArrowRight\b/;
 
-	if (!re.test(k)){ // if key pressed is not a modifier
+	if (!mods.test(k)){ // if key pressed is not a modifier
 		console.log(k);
 		
-		// if key hasn't been pressed, add it to keys array
-		if (keys.indexOf(k) === -1){ 
+		// if key hasn't been pressed (and isn't an arrow key), add it to keys array
+		if ((keys.indexOf(k) === -1)&&(!arrows.test(k))){ 
 			console.log("adding key to array and playing sound")
 			keys.push(k);
 			playSound(k);
