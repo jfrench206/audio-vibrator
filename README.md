@@ -5,7 +5,7 @@ This app enables you to find the resonant frequencies of nearby objects using a 
 [Click here to use the app.](https://jfrench206.github.io/audio-vibrator/)
 
 ## Current status:
-3/22 - Front end is mocked up, working on adding multiple oscillators
+3/22 - Front end is mocked up & audio is tuneable, working on adding multiple oscillators
 
 ## Dev guide
 
