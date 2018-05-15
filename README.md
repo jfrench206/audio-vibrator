@@ -8,7 +8,6 @@ This app enables you to find the resonant frequencies of nearby objects using a 
 
 ## Current status:
 5/15 - Switched audio libraries to ToneJS, since it's maintained and awesome. Added todo.txt, got multiple oscillators working!
-3/22 - Front end is mocked up & audio is tuneable, working on adding multiple oscillators
 
 ## Dev guide
 
