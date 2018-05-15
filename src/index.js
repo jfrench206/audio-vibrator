@@ -1,23 +1,18 @@
 import Tone from 'tone';
 
+var pitchRef = 440; //set root pitch - defaults to A440 aka concert pitch
 var voices = 8;
-var synth = new Tone.PolySynth(voices, Tone.Synth).toMaster();
-// synth.oscillator.type = "sine";
-
-var oscs = [
-	{freq: 440, detune: 0}, 
-	{freq: 660, detune: 0}, 
-	{freq: 1485, detune: 0}, 
-	{freq: 2227.5, detune: 0}, 
-	{freq: 3341.25, detune: 0}, 
-	{freq: 5011.875, detune: 0}, 
-	{freq: 7517.8125, detune: 0}, 
-	{freq: 11276.71875, detune: 0}
-];	
+var oscs = [];
 var keys = [];
 var deadZone = 0;
 
 window.onload=function(){
+	// construct oscillator bank
+	for (var i=0; i<voices; i++){
+		oscs[i] = new Tone.Synth().toMaster();
+		oscs[i].frequency.value = pitchRef*Math.pow(2,i/12); // oh, 12th root of two...this makes an equal-temperament chromatic scale, because why not?
+	}
+
 	// listen for events
 	var parentElem = document.querySelector("div.audio-wrapper");
 	// parentElem.addEventListener("pointerdown", pointDown, false);
@@ -50,22 +45,22 @@ function mouseMoved(e){
 }
 
 
-function pitchUp(value){
+function pitchUp(){
 	console.log("increasing pitch");
 	synth.detune.value+=20;
 }
 
-function pitchDown(value){
+function pitchDown(){
 	console.log("decreasing pitch");
 	synth.detune.value-=20;
 }
 
-function microPitchUp(value){
+function microPitchUp(){
 	console.log("micro increasing pitch");
 	synth.detune.value+=3;
 }
 
-function microPitchDown(value){
+function microPitchDown(){
 	console.log("micro decreasing pitch");
 	synth.detune.value-=3;
 }
@@ -113,10 +108,9 @@ function playSound(key){
 	console.log("playing " + key);
 	if (!isNaN(key)){
 		var keyNum = parseInt(key);
-		console.log(keyNum);
-		if ((keyNum>0) && (keyNum-1<voices)) {
-
-			synth.triggerAttack(oscs[keyNum-1].freq);
+		if (keyNum-1<voices) {
+			console.log(oscs[keyNum].frequency);
+			oscs[keyNum].triggerAttack(oscs[keyNum].frequency);
 		}
 	}
 }
@@ -125,7 +119,6 @@ function stopSound(key){
 	console.log("stopping " + key);
 	if (!isNaN(key)){
 		var keyNum = parseInt(key);
-		console.log(keyNum);
-		synth.triggerRelease(oscs[keyNum-1].freq);
+		oscs[keyNum].triggerRelease(oscs[keyNum].frequency);
 	}
 }
