@@ -1,12 +1,12 @@
 import Tone from 'tone';
 
 var synth = new Tone.Synth().toMaster();
+// console.log(synth.oscillator.type);
+synth.oscillator.type = "sine";
 
 var oscs = {};
 var keys = [];
 var deadZone = 0;
-
-// var osc = T("sin", {freq:440, mul:0.5});
 
 window.onload=function(){
 	// listen for events
@@ -43,22 +43,22 @@ function mouseMoved(e){
 
 function pitchUp(value){
 	console.log("increasing pitch");
-	osc.freq.value++;
+	synth.detune.value+=20;
 }
 
 function pitchDown(value){
 	console.log("decreasing pitch");
-	osc.freq.value--;
+	synth.detune.value-=20;
 }
 
 function microPitchUp(value){
 	console.log("micro increasing pitch");
-	osc.freq.value = osc.freq.value + 0.2;
+	synth.detune.value+=3;
 }
 
 function microPitchDown(value){
 	console.log("micro decreasing pitch");
-	osc.freq.value = osc.freq.value - 0.2;
+	synth.detune.value-=3;
 }
 
 function keyDown(e){
@@ -69,7 +69,7 @@ function keyDown(e){
 	var arrows = /\bArrowDown\b|\bArrowLeft\b|\bArrowUp\b|\bArrowRight\b/;
 
 	if (!mods.test(k)){ // if key pressed is not a modifier
-		console.log(k);
+		// console.log(k);
 		
 		// if key hasn't been pressed (and isn't an arrow key), add it to keys array
 		if ((keys.indexOf(k) === -1)&&(!arrows.test(k))){ 
@@ -102,12 +102,13 @@ function keyUp(e){
 
 function playSound(key){
 	console.log("playing " + key);
-	synth.triggerAttackRelease("C4","8n");
+	synth.triggerAttack("C3");
 	// osc.play();
 
 }
 
 function stopSound(key){
 	console.log("stopping " + key);
+	synth.triggerRelease();
 	// osc.pause();
 }
