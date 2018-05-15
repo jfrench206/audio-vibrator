@@ -1,6 +1,6 @@
 import Tone from 'tone';
 
-var pitchRef = 440; //set root pitch - defaults to A440 aka concert pitch
+var pitchRef = 220; //set root pitch in Hz
 var voices = 8;
 var oscs = [];
 var keys = [];
@@ -21,48 +21,56 @@ window.onload=function(){
 	document.addEventListener("keyup", keyUp, false);
 }
 
-function pointDown(e) {
-	//test to make sure touch is actually in an element
-	if (e.target.id !== ""){
-		var clickedItem = e.target.id;
-		e.stopPropagation();
-		// oscs[clickedItem] = {"selected": "true"};
-	}
-}
+// function pointDown(e) {
+// 	//test to make sure touch is actually in an element
+// 	if (e.target.id !== ""){
+// 		var clickedItem = e.target.id;
+// 		e.stopPropagation();
+// 		// oscs[clickedItem] = {"selected": "true"};
+// 	}
+// }
 
-function pointUp(e) {
+// function pointUp(e) {
 
-}
+// }
 
-function mouseMoved(e){
-	var mouseY = e.clientY;
-	console.log(mouseY);
+// function mouseMoved(e){
+// 	var mouseY = e.clientY;
+// 	console.log(mouseY);
 
-	// var mouseDelta = Math.abs(mouseY - e.clientY);
-	// if (mouseDelta>deadZone){
-	// 	pitchAdjust(mouseY);
-	// }
-}
+// 	var mouseDelta = Math.abs(mouseY - e.clientY);
+// 	if (mouseDelta>deadZone){
+// 		pitchAdjust(mouseY);
+// 	}
+// }
 
 
 function pitchUp(){
 	console.log("increasing pitch");
-	synth.detune.value+=20;
+	keys.forEach(function(index){
+		oscs[index].detune.value+=20;
+	});
 }
 
 function pitchDown(){
 	console.log("decreasing pitch");
-	synth.detune.value-=20;
+	keys.forEach(function(index){
+		oscs[index].detune.value-=20;
+	});
 }
 
 function microPitchUp(){
 	console.log("micro increasing pitch");
-	synth.detune.value+=3;
+	keys.forEach(function(index){
+		oscs[index].detune.value+=3;
+	});
 }
 
 function microPitchDown(){
 	console.log("micro decreasing pitch");
-	synth.detune.value-=3;
+	keys.forEach(function(index){
+		oscs[index].detune.value-=3;
+	});
 }
 
 function keyDown(e){

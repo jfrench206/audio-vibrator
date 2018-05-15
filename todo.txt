@@ -1,5 +1,5 @@
 Todo:
-- make pitchbend work for playing oscs
 - hook up UI
 - convert to React and make oscs into components
 - make oscs dynamically addable / subtractable
+- add touch interface for mobile
