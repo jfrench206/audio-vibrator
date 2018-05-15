@@ -1,10 +1,19 @@
 import Tone from 'tone';
 
-var synth = new Tone.Synth().toMaster();
-// console.log(synth.oscillator.type);
-synth.oscillator.type = "sine";
+var voices = 8;
+var synth = new Tone.PolySynth(voices, Tone.Synth).toMaster();
+// synth.oscillator.type = "sine";
 
-var oscs = {};
+var oscs = [
+	{freq: 440, detune: 0}, 
+	{freq: 660, detune: 0}, 
+	{freq: 1485, detune: 0}, 
+	{freq: 2227.5, detune: 0}, 
+	{freq: 3341.25, detune: 0}, 
+	{freq: 5011.875, detune: 0}, 
+	{freq: 7517.8125, detune: 0}, 
+	{freq: 11276.71875, detune: 0}
+];	
 var keys = [];
 var deadZone = 0;
 
@@ -102,13 +111,21 @@ function keyUp(e){
 
 function playSound(key){
 	console.log("playing " + key);
-	synth.triggerAttack("C3");
-	// osc.play();
+	if (!isNaN(key)){
+		var keyNum = parseInt(key);
+		console.log(keyNum);
+		if ((keyNum>0) && (keyNum-1<voices)) {
 
+			synth.triggerAttack(oscs[keyNum-1].freq);
+		}
+	}
 }
 
 function stopSound(key){
 	console.log("stopping " + key);
-	synth.triggerRelease();
-	// osc.pause();
+	if (!isNaN(key)){
+		var keyNum = parseInt(key);
+		console.log(keyNum);
+		synth.triggerRelease(oscs[keyNum-1].freq);
+	}
 }
