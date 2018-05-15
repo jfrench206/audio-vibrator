@@ -117,8 +117,7 @@ function playSound(key){
 	if (!isNaN(key)){
 		var keyNum = parseInt(key);
 		if (keyNum-1<voices) {
-			console.log(oscs[keyNum].frequency);
-			oscs[keyNum].triggerAttack(oscs[keyNum].frequency);
+			oscs[keyNum].triggerAttack(oscs[keyNum].frequency.value);
 		}
 	}
 }
