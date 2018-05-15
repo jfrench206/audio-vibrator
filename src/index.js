@@ -48,28 +48,28 @@ window.onload=function(){
 function pitchUp(){
 	console.log("increasing pitch");
 	keys.forEach(function(index){
-		oscs[index].detune.value+=20;
+		oscs[index-1].detune.value+=20;
 	});
 }
 
 function pitchDown(){
 	console.log("decreasing pitch");
 	keys.forEach(function(index){
-		oscs[index].detune.value-=20;
+		oscs[index-1].detune.value-=20;
 	});
 }
 
 function microPitchUp(){
 	console.log("micro increasing pitch");
 	keys.forEach(function(index){
-		oscs[index].detune.value+=3;
+		oscs[index-1].detune.value+=3;
 	});
 }
 
 function microPitchDown(){
 	console.log("micro decreasing pitch");
 	keys.forEach(function(index){
-		oscs[index].detune.value-=3;
+		oscs[index-1].detune.value-=3;
 	});
 }
 
