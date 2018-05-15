@@ -1,17 +1,12 @@
+import Tone from 'tone';
+
+var synth = new Tone.Synth().toMaster();
+
 var oscs = {};
 var keys = [];
 var deadZone = 0;
 
-var osc = T("sin", {freq:440, mul:0.5});
-
-// env.play();
-
-// audioSequence.start(); // Start the Sequence
-
-// interval.stop(); // Stop the interval
-// audioSequence.stop();  // Stop the Sequence
-// interval.start(); // Restart the Interval
-// audioSequence.start();  // Restart the Sequence
+// var osc = T("sin", {freq:440, mul:0.5});
 
 window.onload=function(){
 	// listen for events
@@ -78,7 +73,7 @@ function keyDown(e){
 		
 		// if key hasn't been pressed (and isn't an arrow key), add it to keys array
 		if ((keys.indexOf(k) === -1)&&(!arrows.test(k))){ 
-			console.log("adding key to array and playing sound")
+			// console.log("adding key to array and playing sound")
 			keys.push(k);
 			playSound(k);
 		} else if (k === 'ArrowDown'){
@@ -106,12 +101,13 @@ function keyUp(e){
 }
 
 function playSound(key){
-	// console.log("playing " + key);
-	osc.play();
+	console.log("playing " + key);
+	synth.triggerAttackRelease("C4","8n");
+	// osc.play();
 
 }
 
 function stopSound(key){
-	// console.log("stopping " + key);
-	osc.pause();
+	console.log("stopping " + key);
+	// osc.pause();
 }
