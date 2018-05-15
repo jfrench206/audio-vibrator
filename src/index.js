@@ -1,6 +1,6 @@
 import Tone from 'tone';
 
-var pitchRef = 220; //set root pitch in Hz
+var pitchRef = 110; //set root pitch in Hz
 var voices = 8;
 var oscs = [];
 var keys = [];
@@ -113,19 +113,21 @@ function keyUp(e){
 }
 
 function playSound(key){
-	console.log("playing " + key);
 	if (!isNaN(key)){
-		var keyNum = parseInt(key);
-		if (keyNum-1<voices) {
+		var keyNum = parseInt(key)-1;
+		if (keyNum<voices && keyNum>-1) {
+			console.log("playing " + key);
 			oscs[keyNum].triggerAttack(oscs[keyNum].frequency.value);
 		}
 	}
 }
 
 function stopSound(key){
-	console.log("stopping " + key);
 	if (!isNaN(key)){
-		var keyNum = parseInt(key);
-		oscs[keyNum].triggerRelease(oscs[keyNum].frequency);
+		var keyNum = parseInt(key)-1;
+		if (keyNum<voices && keyNum>-1) {
+			console.log("stopping " + key);
+			oscs[keyNum].triggerRelease(oscs[keyNum].frequency);
+		}
 	}
 }
