@@ -13,5 +13,8 @@
   "scripts": {
     "build": "webpack",
     "start": "node server.js"
+  },
+  "dependencies": {
+    "tone": "^0.12.80"
   }
 }

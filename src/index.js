@@ -1,19 +1,18 @@
-var oscs = {};
+import Tone from 'tone';
+
+var pitchRef = 110; //set root pitch in Hz
+var voices = 8;
+var oscs = [];
 var keys = [];
 var deadZone = 0;
 
-var osc = T("sin", {freq:440, mul:0.5});
-
-// env.play();
-
-// audioSequence.start(); // Start the Sequence
-
-// interval.stop(); // Stop the interval
-// audioSequence.stop();  // Stop the Sequence
-// interval.start(); // Restart the Interval
-// audioSequence.start();  // Restart the Sequence
-
 window.onload=function(){
+	// construct oscillator bank
+	for (var i=0; i<voices; i++){
+		oscs[i] = new Tone.Synth().toMaster();
+		oscs[i].frequency.value = pitchRef*Math.pow(2,i/12); // oh, 12th root of two...this makes an equal-temperament chromatic scale, because why not?
+	}
+
 	// listen for events
 	var parentElem = document.querySelector("div.audio-wrapper");
 	// parentElem.addEventListener("pointerdown", pointDown, false);
@@ -22,48 +21,56 @@ window.onload=function(){
 	document.addEventListener("keyup", keyUp, false);
 }
 
-function pointDown(e) {
-	//test to make sure touch is actually in an element
-	if (e.target.id !== ""){
-		var clickedItem = e.target.id;
-		e.stopPropagation();
-		// oscs[clickedItem] = {"selected": "true"};
-	}
-}
+// function pointDown(e) {
+// 	//test to make sure touch is actually in an element
+// 	if (e.target.id !== ""){
+// 		var clickedItem = e.target.id;
+// 		e.stopPropagation();
+// 		// oscs[clickedItem] = {"selected": "true"};
+// 	}
+// }
 
-function pointUp(e) {
+// function pointUp(e) {
 
-}
+// }
 
-function mouseMoved(e){
-	var mouseY = e.clientY;
-	console.log(mouseY);
+// function mouseMoved(e){
+// 	var mouseY = e.clientY;
+// 	console.log(mouseY);
 
-	// var mouseDelta = Math.abs(mouseY - e.clientY);
-	// if (mouseDelta>deadZone){
-	// 	pitchAdjust(mouseY);
-	// }
-}
+// 	var mouseDelta = Math.abs(mouseY - e.clientY);
+// 	if (mouseDelta>deadZone){
+// 		pitchAdjust(mouseY);
+// 	}
+// }
 
 
-function pitchUp(value){
+function pitchUp(){
 	console.log("increasing pitch");
-	osc.freq.value++;
+	keys.forEach(function(index){
+		oscs[index].detune.value+=20;
+	});
 }
 
-function pitchDown(value){
+function pitchDown(){
 	console.log("decreasing pitch");
-	osc.freq.value--;
+	keys.forEach(function(index){
+		oscs[index].detune.value-=20;
+	});
 }
 
-function microPitchUp(value){
+function microPitchUp(){
 	console.log("micro increasing pitch");
-	osc.freq.value = osc.freq.value + 0.2;
+	keys.forEach(function(index){
+		oscs[index].detune.value+=3;
+	});
 }
 
-function microPitchDown(value){
+function microPitchDown(){
 	console.log("micro decreasing pitch");
-	osc.freq.value = osc.freq.value - 0.2;
+	keys.forEach(function(index){
+		oscs[index].detune.value-=3;
+	});
 }
 
 function keyDown(e){
@@ -74,11 +81,11 @@ function keyDown(e){
 	var arrows = /\bArrowDown\b|\bArrowLeft\b|\bArrowUp\b|\bArrowRight\b/;
 
 	if (!mods.test(k)){ // if key pressed is not a modifier
-		console.log(k);
+		// console.log(k);
 		
 		// if key hasn't been pressed (and isn't an arrow key), add it to keys array
 		if ((keys.indexOf(k) === -1)&&(!arrows.test(k))){ 
-			console.log("adding key to array and playing sound")
+			// console.log("adding key to array and playing sound")
 			keys.push(k);
 			playSound(k);
 		} else if (k === 'ArrowDown'){
@@ -106,12 +113,21 @@ function keyUp(e){
 }
 
 function playSound(key){
-	// console.log("playing " + key);
-	osc.play();
-
+	if (!isNaN(key)){
+		var keyNum = parseInt(key)-1;
+		if (keyNum<voices && keyNum>-1) {
+			console.log("playing " + key);
+			oscs[keyNum].triggerAttack(oscs[keyNum].frequency.value);
+		}
+	}
 }
 
 function stopSound(key){
-	// console.log("stopping " + key);
-	osc.pause();
+	if (!isNaN(key)){
+		var keyNum = parseInt(key)-1;
+		if (keyNum<voices && keyNum>-1) {
+			console.log("stopping " + key);
+			oscs[keyNum].triggerRelease(oscs[keyNum].frequency);
+		}
+	}
 }
