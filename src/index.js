@@ -1,4 +1,5 @@
 import Tone from 'tone';
+import React from 'react';
 
 var pitchRef = 110; //set root pitch in Hz
 var voices = 8;

@@ -15,6 +15,7 @@
     "start": "node server.js"
   },
   "dependencies": {
+    "react": "^16.3.2",
     "tone": "^0.12.80"
   }
 }
