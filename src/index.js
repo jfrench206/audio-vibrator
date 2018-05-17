@@ -1,4 +1,3 @@
-import Tone from 'tone';
 import React from 'react';
 import * as Keys from './../imports/api/keys';
 import Touch from './../imports/api/touch';
