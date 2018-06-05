@@ -11,7 +11,7 @@ This app enables you to find the resonant frequencies of nearby objects using a 
 
 ## Dev guide
 
-The project uses the [Timbre.js](https://mohayonao.github.io/timbre.js/) library for audio generation, and WebPack to help neaten the dev / build environments. Thanks to [fat0wl](https://github.com/fat0wl/) for his help with the transition to WebPack!
+The project uses the [Tone.js](https://tonejs.github.io/) library for audio generation, and WebPack to help neaten the dev / build environments. Thanks to [fat0wl](https://github.com/fat0wl/) for his help with the transition to WebPack!
 
 First:
 
