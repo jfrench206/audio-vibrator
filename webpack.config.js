@@ -7,6 +7,17 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const PUBLIC_PATH_PREFIX = './'
 
 module.exports = {
+  module: {
+    rules: [
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        use: {
+          loader: "babel-loader"
+        }
+      }
+    ]
+  },
   entry: {
     app: './src/index.js'
   },
