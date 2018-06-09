@@ -1,7 +1,7 @@
 import Tone from 'tone';
 import keys from './keys';
 
-var voices = 8; //set number of oscillators
+var voices = 4; //set number of oscillators
 var pitchRef = 110; //set root pitch in Hz
 var oscs = [];
 
@@ -59,4 +59,4 @@ function microPitchDown(){
 }
 
 export default oscs;
-export {playSound, stopSound, pitchUp, pitchDown, microPitchUp, microPitchDown};
+export {voices, pitchRef, playSound, stopSound, pitchUp, pitchDown, microPitchUp, microPitchDown};
