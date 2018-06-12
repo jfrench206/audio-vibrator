@@ -23,6 +23,10 @@ module.exports = {
     app: './src/index.js'
   },
   plugins: [
+    new webpack.DefinePlugin({
+      'process.env.NODE_ENV': JSON.stringify('production')
+    }),
+    new webpack.optimize.UglifyJsPlugin(),
     new CleanWebpackPlugin(['docs']),
     new CopyWebpackPlugin([
       { from: 'assets', to: 'assets' }
