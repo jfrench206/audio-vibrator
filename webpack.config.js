@@ -6,6 +6,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 const PUBLIC_PATH_PREFIX = './'
 
+
 module.exports = {
   module: {
     rules: [
@@ -21,7 +22,6 @@ module.exports = {
   entry: {
     app: './src/index.js'
   },
-  devtool: 'inline-source-map',
   plugins: [
     new CleanWebpackPlugin(['docs']),
     new CopyWebpackPlugin([

@@ -14,7 +14,6 @@ function keyDown(e){
 		
 		// if key hasn't been pressed (and isn't an arrow key), add it to keys array
 		if ((keys.indexOf(k) === -1)&&(!arrows.test(k))){ 
-			// console.log("adding key to array and playing sound")
 			keys.push(k);
 			Audio.playSound(k);
 		} else if (k === 'ArrowDown'){
@@ -38,7 +37,6 @@ function keyUp(e){
 		keys.splice(keyLoc, 1);
 		Audio.stopSound(k);
 	}
-	// console.log(keys);
 }
 
 export default keys;

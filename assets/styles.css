@@ -17,7 +17,6 @@ html, body{
 	height: 100%;
 	min-height: 200px;
 	background-color: rgba(206, 229, 209, 0.8);
-	/*border-radius:var(--corner-easing);*/
 	font-family: 'Roboto Condensed', sans-serif;
 	color: rgba(0,0,0,.8);
 }
@@ -40,16 +39,33 @@ html, body{
 	border-radius:var(--corner-easing);
 }
 
+.freq-readout {
+	background-color: rgba(13, 0, 40,0.6);
+	border-radius:var(--corner-easing);
+	padding: 5px 10px;
+    border: 2px solid black;
+}
+
 input[type=checkbox] {
-	position: relative;
-	top: -24px;
-	left: 25px;
-    width:20px;
-    height:20px;
+    position: relative;
+    top: -24px;
+    left: 43px;
+    width: 20px;
+    height: 20px;
 }
 
 h1, h3 {
 	margin: 5px;
+}
+
+h5 {
+	margin:0px;
+	font-family: 'Roboto', sans-serif;
+	color: white;
+}
+
+p {
+	color: rgb(144, 150, 145);
 }
 
 header{

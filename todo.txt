@@ -1,5 +1,11 @@
 Todo:
-- hook up UI
-- convert to React and make oscs into components
-- make oscs dynamically addable / subtractable
-- add touch interface for mobile
+- consider adding HTML5 canvas element with waveform display
+
+Later:
+- add touch interface
+- add hamburger menu for settings / about
+
+Feature wishlist:
+- color change w/ pitch
+- button to add more oscs
+- key array w/ learn & teach function, changes osc names & keys
