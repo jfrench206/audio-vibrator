@@ -1,17 +1,23 @@
 import React from 'react';
 import Osc from './Osc';
-import * as Keys from './../api/keys';
+import keys, * as Keys from './../api/keys';
+import oscs, * as Audio from './../api/audio';
 
 function Oscs(props){
+	// generate oscillator components based on underlying array
+	const oscList = oscs.map((osc,i) => 
+		<Osc key={i} 
+		   	 num={i+1} 
+			 freq={osc.frequency.value.toFixed(2)} />
+	);
+	
 	return (
-			<div className="audio-wrapper">
-			<Osc num="1"/>
-			<Osc num="2"/>
-			<Osc num="3"/>
-			<Osc num="4"/>
+		<div className="audio-wrapper">
+			{oscList}
 		</div>
 	)
 }
+
 
 export default class App extends React.Component {
 
@@ -20,11 +26,12 @@ export default class App extends React.Component {
 		window.addEventListener("keyup", Keys.keyUp, false);
 	}
 
+
 	render(){
 		return(
 			<div className="flex-container" onKeyDown={Keys.keyDown} onKeyUp={Keys.keyUp}>
 				<header><h1>Audio Vibrator</h1></header>
-				<Oscs />
+				<Oscs/>	
 				<footer><h3>created by Jesse French</h3></footer>
 			</div>
 		);

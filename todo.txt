@@ -1,5 +1,9 @@
 Todo:
-- make checkboxes follow audio
+- make frequency readout dynamic
+- make checkboxes dynamic
+- consider adding HTML5 canvas element with waveform display
+
+Later:
 - add touch interface
 - add hamburger menu for settings / about
 

@@ -1,7 +1,7 @@
 import Tone from 'tone';
 import keys from './keys';
 
-var voices = 4; //set number of oscillators
+var voices = 3; //set number of oscillators
 var pitchRef = 110; //set root pitch in Hz
 var oscs = [];
 
