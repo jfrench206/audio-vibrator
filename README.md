@@ -4,10 +4,11 @@ This app enables you to find the resonant frequencies of nearby objects using a 
 
 [Click here to use the app.](https://jfrench206.github.io/audio-vibrator/)
 
-(Use keys 1-8 on your keyboard to trigger the oscillators, and arrow keys to tune - UI is not connected yet)
-
-## Current status:
+## Changelog:
+6/12 - UI is hooked up finally! Calling this the minimum viable product.
 5/15 - Switched audio libraries to ToneJS, since it's maintained and awesome. Added todo.txt, got multiple oscillators working!
+3/22 - Front end is mocked up & audio is tuneable, working on adding multiple oscillators
+3/6 - Front-end mocked up
 
 ## Dev guide
 
