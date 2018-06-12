@@ -20,14 +20,14 @@ export default class Osc extends React.Component {
   		isOn = true;
   	}
   		this.setState({
-	  		freq: oscs[this.props.num-1].frequency.value.toFixed(2),
+	  		freq: oscs[this.props.num-1].frequency.value.toFixed(1),
 	  		on: isOn
 	  	});
   }
 
   componentWillMount() {
   	this.setState({
-  		freq: oscs[this.props.num-1].frequency.value.toFixed(2)
+  		freq: oscs[this.props.num-1].frequency.value.toFixed(1)
   	});
   }
 
@@ -46,7 +46,7 @@ export default class Osc extends React.Component {
 				<input type="checkbox" name={this.props.num} id={`check${this.props.num}`} checked={this.state.on}>
 				</input>
 				<div className="freq-readout">
-					<h5>{this.state.freq} Hz</h5>
+					<h5>{this.state.freq.toString().padStart(5,'0')} Hz</h5>
 				</div>
 			</div>
 		);
