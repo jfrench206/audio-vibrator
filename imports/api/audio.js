@@ -1,7 +1,8 @@
 import Tone from 'tone';
 import keys from './keys';
+import Osc from './../ui/Osc';
 
-var voices = 3; //set number of oscillators
+var voices = 6; //set number of oscillators
 var pitchRef = 110; //set root pitch in Hz
 var oscs = [];
 
@@ -33,28 +34,28 @@ function stopSound(key){
 function pitchUp(){
 	console.log("increasing pitch");
 	keys.forEach(function(index){
-		oscs[index-1].detune.value+=20;
+		oscs[index-1].frequency.value+=1;
 	});
 }
 
 function pitchDown(){
 	console.log("decreasing pitch");
 	keys.forEach(function(index){
-		oscs[index-1].detune.value-=20;
+		oscs[index-1].frequency.value-=1;
 	});
 }
 
 function microPitchUp(){
 	console.log("micro increasing pitch");
 	keys.forEach(function(index){
-		oscs[index-1].detune.value+=3;
+		oscs[index-1].frequency.value+=.1;
 	});
 }
 
 function microPitchDown(){
 	console.log("micro decreasing pitch");
 	keys.forEach(function(index){
-		oscs[index-1].detune.value-=3;
+		oscs[index-1].frequency.value-=.1;
 	});
 }
 

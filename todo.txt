@@ -1,6 +1,4 @@
 Todo:
-- make frequency readout dynamic
-- make checkboxes dynamic
 - consider adding HTML5 canvas element with waveform display
 
 Later:

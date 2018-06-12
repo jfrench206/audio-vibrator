@@ -32,7 +32,10 @@ export default class App extends React.Component {
 			<div className="flex-container" onKeyDown={Keys.keyDown} onKeyUp={Keys.keyUp}>
 				<header><h1>Audio Vibrator</h1></header>
 				<Oscs/>	
-				<footer><h3>created by Jesse French</h3></footer>
+				<footer>
+					<h3>created by Jesse French</h3>
+				</footer>
+					<p>(use keyboard 1-6 to trigger sounds, arrow keys to tune)</p>
 			</div>
 		);
 	}
