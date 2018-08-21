@@ -40,7 +40,7 @@ html, body{
 }
 
 .freq-readout {
-	background-color: rgba(13, 0, 40,0.6);
+	background-color: rgba(13, 0, 40,0.4);
 	border-radius:var(--corner-easing);
 	padding: 5px 10px;
     border: 2px solid black;
@@ -66,6 +66,11 @@ h5 {
 
 p {
 	color: rgb(144, 150, 145);
+}
+
+a {
+	text-decoration: none;
+	color: inherit;
 }
 
 header{

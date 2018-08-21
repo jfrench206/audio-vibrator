@@ -7,18 +7,24 @@ var pitchRef = 110; //set root pitch in Hz
 var oscs = [];
 var maxPitch = 998; // highest pitch in Hz
 var minPitch = 20; // lowest pitch in Hz
+var prevPitch = pitchRef;
 
-// constructs array of oscillators
+// construct array of oscillators
 for (var i=0; i<voices; i++){
 	oscs[i] = new Tone.Synth().toMaster();
-	oscs[i].frequency.value = pitchRef*Math.pow(2,i/12); // oh, 12th root of two...this makes an equal-temperament chromatic scale, because why not?
+	// oh, 12th root of two...the below line makes an equal-tempered chromatic scale, because why not?
+	// oscs[i].frequency.value = pitchRef*Math.pow(2,i/12);
+
+	// the below makes a stack of perfect fifths, cos it sounds nice
+	oscs[i].frequency.value = prevPitch
+	prevPitch*=1.5
 }
 
 function playSound(key){
 	if (!isNaN(key)){
 		var keyNum = parseInt(key)-1;
 		if (keyNum<voices && keyNum>-1) {
-			console.log("playing " + key);
+			console.log("playing osc " + key);
 			oscs[keyNum].triggerAttack(oscs[keyNum].frequency.value);
 		}
 	}
@@ -28,43 +34,43 @@ function stopSound(key){
 	if (!isNaN(key)){
 		var keyNum = parseInt(key)-1;
 		if (keyNum<voices && keyNum>-1) {
-			console.log("stopping " + key);
+			console.log("stopping osc " + key);
 			oscs[keyNum].triggerRelease(oscs[keyNum].frequency);
 		}
 	}
 }
 
 function pitchUp(){
-	console.log("increasing pitch");
 	keys.forEach(function(index){
 		if(oscs[index-1].frequency.value<maxPitch){
+			console.log("increasing pitch");
 			oscs[index-1].frequency.value+=1;
 		}
 	});
 }
 
 function pitchDown(){
-	console.log("decreasing pitch");
 	keys.forEach(function(index){
 		if(oscs[index-1].frequency.value>minPitch){
+			console.log("decreasing pitch");
 			oscs[index-1].frequency.value-=1;
 		}
 	});
 }
 
 function microPitchUp(){
-	console.log("micro increasing pitch");
 	keys.forEach(function(index){
 		if(oscs[index-1].frequency.value<maxPitch){
+			console.log("micro increasing pitch");
 			oscs[index-1].frequency.value+=.1;
 		}
 	});
 }
 
 function microPitchDown(){
-	console.log("micro decreasing pitch");
 	keys.forEach(function(index){
 		if(oscs[index-1].frequency.value>minPitch){
+			console.log("micro decreasing pitch");
 			oscs[index-1].frequency.value-=.1;
 		}
 	});
