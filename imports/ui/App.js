@@ -33,7 +33,7 @@ export default class App extends React.Component {
 				<header><h1>Audio Vibrator</h1></header>
 				<Oscs/>	
 				<footer>
-					<h3>created by Jesse French</h3>
+					<h3>created by <a href="https://github.com/jfrench206">Jesse French</a></h3>
 				</footer>
 					<p>(use keyboard 1-6 to trigger sounds, arrow keys to tune)</p>
 			</div>

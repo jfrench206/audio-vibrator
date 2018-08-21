@@ -5,26 +5,31 @@ var keys = [];
 function keyDown(e){
 	var k = e.key || e.keyCode; //cross-browser compatibility
 
-	//regex to match modifiers & arrow keys
-	var mods = /\bControl\b|\bShift\b|\bCapsLock\b|\bAlt\b|\bTab\b|\bEscape\b/; 
-	var arrows = /\bArrowDown\b|\bArrowLeft\b|\bArrowUp\b|\bArrowRight\b/;
+	//regex to match modifiers
+	const mods = /\bControl\b|\bShift\b|\bCapsLock\b|\bAlt\b|\bTab\b|\bEscape\b/; 
+	// const arrows = /\bArrowDown\b|\bArrowLeft\b|\bArrowUp\b|\bArrowRight\b/;
 
-	if (!mods.test(k)){ // if key pressed is not a modifier
+	if ((!mods.test(k))&&(keys.indexOf(k)===-1)) { // if key pressed is not a modifier, and isn't already pressed
 		// console.log(k);
-		
-		// if key hasn't been pressed (and isn't an arrow key), add it to keys array
-		if ((keys.indexOf(k) === -1)&&(!arrows.test(k))){ 
-			keys.push(k);
-			Audio.playSound(k);
-		} else if (k === 'ArrowDown'){
-			Audio.pitchDown();
-		} else if (k === 'ArrowLeft'){
-			Audio.microPitchDown();
-		} else if (k === 'ArrowUp'){
-			Audio.pitchUp();
-		} else if (k === 'ArrowRight'){
-			Audio.microPitchUp();
-		} 
+
+		switch(k){
+			case 'ArrowDown':
+				Audio.pitchDown();
+				break;
+			case 'ArrowLeft':
+				Audio.microPitchDown();
+				break;
+			case 'ArrowUp':
+				Audio.pitchUp();
+				break;
+			case 'ArrowRight':
+				Audio.microPitchUp();
+				break;
+			default:
+				keys.push(k);
+				Audio.playSound(k);
+				break;
+		}
 	}
 }
 

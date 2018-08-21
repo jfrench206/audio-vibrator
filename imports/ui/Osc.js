@@ -13,16 +13,10 @@ export default class Osc extends React.Component {
   }
 
   update(){
-  	var isOn = false;
-  	if(keysPressed.indexOf(this.props.num.toString())===-1){
-  		isOn = false;
-  	} else {
-  		isOn = true;
-  	}
-  		this.setState({
-	  		freq: oscs[this.props.num-1].frequency.value.toFixed(1),
-	  		on: isOn
-	  	});
+		this.setState({
+  		freq: oscs[this.props.num-1].frequency.value.toFixed(1),
+  		on: !(keysPressed.indexOf(this.props.num.toString())===-1)
+  	});
   }
 
   componentWillMount() {

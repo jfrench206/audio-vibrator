@@ -68,6 +68,11 @@ p {
 	color: rgb(144, 150, 145);
 }
 
+a {
+	text-decoration: none;
+	color: inherit;
+}
+
 header{
 	font-family: 'Roboto', sans-serif;
 	padding-top: 10px;
