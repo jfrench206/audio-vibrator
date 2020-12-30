@@ -35,7 +35,7 @@ export default class App extends React.Component {
 				<footer>
 					<h3>created by <a href="https://github.com/jfrench206">Jesse French</a></h3>
 				</footer>
-					<p>(use keyboard 1-6 to trigger sounds, arrow keys to tune)</p>
+					<p>(Use keyboard 1-6 to trigger sounds. While on, rough tune oscillators with up + down arrow keys. Fine tune with left + right.)</p>
 			</div>
 		);
 	}
