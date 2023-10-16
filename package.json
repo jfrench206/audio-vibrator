@@ -22,6 +22,6 @@
     "react": "16.14.0",
     "react-dom": "16.14.0",
     "tone": "0.12.80",
-    "webpack-merge": "4.2.2"
+    "webpack-merge": "5.10.0"
   }
 }
