@@ -21,7 +21,7 @@
   "dependencies": {
     "react": "16.14.0",
     "react-dom": "16.14.0",
-    "tone": "0.12.80",
+    "tone": "14.9.17",
     "webpack-merge": "4.2.2"
   }
 }
